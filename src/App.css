@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -9,7 +11,7 @@ body {
   background: #000 url("img/bg.jpg") no-repeat center center/cover;
   height: 100vh;
   color: #fff;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
 }
 
 a {
@@ -18,6 +20,17 @@ a {
 .logo {
   width: 200px;
   margin-top: 15px;
+  padding: 15px 0 30px 0;
+}
+.back-container {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+}
+.back-to-home {
+  color: white;
+  text-decoration: underline;
+  cursor: pointer;
 }
 .container {
   max-width: 1100px;
@@ -28,7 +41,7 @@ a {
 .btn {
   display: inline-block;
   color: #fff;
-  background-color: #3fb573;
+  background-color: #016936;
   font-size: 1em;
   text-align: center;
   padding: 10px 15px;
@@ -72,10 +85,11 @@ input[type="text"] {
 }
 
 .card {
+  position: relative;
   cursor: pointer;
   background-color: transparent;
   height: 300px;
-  perspective: 1000px;
+  /* perspective: 1000px; */
 }
 
 .card h1 {
@@ -89,43 +103,146 @@ input[type="text"] {
   width: 100%;
   height: 300px;
   object-fit: cover;
-}
-
-.card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
-}
-
-.card:hover .card-inner {
-  transform: rotateY(180deg);
-}
-
-.card-front,
-.card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
+  opacity: 1;
+  display: block;
+  transition: 0.5s ease;
   backface-visibility: hidden;
 }
 
-.card-back {
-  background-color: #333;
-  color: white;
-  padding: 20px;
-  transform: rotateY(180deg);
+.card__overlay {
+  transition: 0.5s ease;
+  opacity: 0;
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+.card:hover img {
+  opacity: 0.2;
 }
 
+.card:hover .card__overlay,
+.card:hover .card__nickname {
+  opacity: 1;
+}
+.card__nickname {
+  position: absolute;
+  bottom: 0;
+  font-size: 36px;
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
+  opacity: 0;
+  transition: 0.5s ease;
+  color: rgba(255, 255, 255, 0.3);
+}
+.card__overlay-text {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+}
 .card li {
   list-style: none;
   padding-bottom: 10px;
 }
-.profile {
-  display: none;
+.profile_container {
+  margin: 60px auto;
+  max-width: 900px;
+  display: flex;
+  overflow-x: hidden;
+  justify-content: center;
 }
+.profile_img-LG {
+  height: 400px;
+  width: 300px;
+  border-radius: 40px;
+  object-fit: cover;
+  object-position: 50% 50%;
+  background-position: 40% 50%;
+}
+
+.profile_portray {
+  font-size: 24px;
+  width: 100%;
+  height: 50px;
+  color: white;
+  background-color: rgba(1, 106, 55, 0.5);
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.description {
+  margin-bottom: 30px;
+  margin-top: 0px;
+}
+
+.profile__name {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+.profile__name--logo {
+  margin-right: 2px;
+  background-color: #016936;
+  border: 1px solid white;
+}
+
+.profile_img_section {
+  margin-right: 50px;
+  position: relative;
+}
+
+.profile_desc_section {
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+}
+
+.seasons_item {
+  display: inline-block;
+  padding: 5px 10px;
+  margin-right: 7.5px;
+  margin-bottom: 10px;
+  line-height: 25px;
+  background-color: #016936;
+  border-radius: 5px;
+  color: rgba(255, 255, 255, 1);
+}
+.profile__dob {
+  opacity: 0.5;
+}
+.profile_occupation h2,
+.profile_appearance h2 {
+  opacity: 0.8;
+  margin-bottom: 5px;
+}
+@media screen and (max-width: 1000px) {
+  .profile_container {
+    margin: 60px 33px 0px;
+    flex-direction: column;
+  }
+
+  .profile_img_section {
+    margin: 0 auto;
+  }
+
+  .profile_img-LG {
+    width: 300px;
+    height: 300px;
+    border-radius: 100%;
+  }
+
+  .profile_desc_section {
+    margin-left: 0px;
+    margin-bottom: 10px;
+    margin-top: -40px;
+  }
+}
+
 @media (max-width: 800px) {
   .cards {
     grid-template-columns: repeat(2, 1fr);

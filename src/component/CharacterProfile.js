@@ -1,28 +1,33 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios'
 import { Link } from "react-router-dom";
+import Spinner from './Spinner'
+import CharacterDetail from './CharacterDetail'
 
-const CharacterProfile = ({ match }) => {
-  const character = match.params.id
+const CharacterProfile = ({ match, location }) => {
+  window.history.pushState({}, null, location.pathname.replace(/\s+/g, '+').toLowerCase());
+  const character = match.params.name.length ? match.params.name : location.pathname.replace("/", "").replace("+", " ")
   const [profile, setProfile] = useState([])
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const getUser = async () => {
-      let response = await axios(`https://www.breakingbadapi.com/api/characters/${character}`);
+      let response = await axios(`https://www.breakingbadapi.com/api/characters/?name=${character}`);
       let data = await response.data;
       console.log(data)
       setProfile(data);
-      setLoading(true)
+      setLoading(false)
     }
     getUser()
-  }, [character])
+  }, [])
   return (
     <>
-      <Link to="/">Back to Home</Link>
-      { loading && <h1>{profile.map(item => (
-        <div key={item.char_id}>{item.name}</div>
-      ))}</h1>}
+      <div className="back-container">
+        <Link to="/" className="back-to-home">&#8592; Home page</Link>
+      </div>
+      { loading ? <Spinner /> : profile.map(item => (
+        <CharacterDetail key={item.char_id} item={item} />
+      ))}
     </>
   )
 }

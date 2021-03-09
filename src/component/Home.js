@@ -20,7 +20,6 @@ const Home = () => {
 
   return (
     <div className="container">
-      <Header />
       <Search getQuery={(q) => setQuery(q)} />
       <CharacterGrid items={items} isLoading={isLoading} />
     </div>
