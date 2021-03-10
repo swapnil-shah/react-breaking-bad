@@ -42,10 +42,11 @@ const CharacterDetail = ({ item }) => {
       </div>
       <div className="profile_desc_section description">
         <h1 className="profile__name">{handleNameLogo(item.name)}</h1>
-        <div className="profile__dob description">On earth since {handleDate(item.birthday)}</div>
-        {item.occupation.length && <div className="profile_occupation description"><h2>I am known as </h2>{item.occupation.map((occ, i) => (
-          <p style={{ marginBottom: "10px" }} key={i}>{occ}</p>
-        ))}</div>}
+        <div className="profile__dob description">{handleDate(item.birthday)}</div>
+        {!item.occupation.includes("unknown") && <div className="profile_occupation description"><h2>I am known as </h2><ul>{item.occupation.map((occ, i) => (
+          <li style={{ marginBottom: "10px" }} key={i}>{occ}</li>
+        ))}
+        </ul></div>}
         <div className="profile_appearance description">
           {item.appearance.length > 0 && (
             <>
