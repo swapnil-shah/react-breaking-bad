@@ -19,7 +19,7 @@ const CharacterProfile = ({ match, location }) => {
       setLoading(false)
     }
     getUser()
-  }, [])
+  }, [character])
   return (
     <>
       <div className="back-container">

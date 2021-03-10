@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import Header from './Header';
 import CharacterGrid from './CharacterGrid';
 import Search from './Search';
 
