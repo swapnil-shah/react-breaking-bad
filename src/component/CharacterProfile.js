@@ -14,7 +14,6 @@ const CharacterProfile = ({ match, location }) => {
     const getUser = async () => {
       let response = await axios(`https://www.breakingbadapi.com/api/characters/?name=${character}`);
       let data = await response.data;
-      console.log(data)
       setProfile(data);
       setLoading(false)
     }

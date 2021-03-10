@@ -156,7 +156,6 @@ input[type="text"] {
   object-fit: cover;
   object-position: 50% 50%;
   background-position: 40% 50%;
-  object-fit: contain;
 }
 
 .profile_portray {
