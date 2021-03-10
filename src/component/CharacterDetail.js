@@ -42,8 +42,8 @@ const CharacterDetail = ({ item }) => {
       </div>
       <div className="profile_desc_section description">
         <h1 className="profile__name">{handleNameLogo(item.name)}</h1>
-        <div className="profile__dob description">{handleDate(item.birthday)}</div>
-        {!item.occupation.includes("unknown") && <div className="profile_occupation description"><h2>I am known as </h2><ul>{item.occupation.map((occ, i) => (
+        {!item.birthday.toLowerCase().includes("unknown") && <div className="profile__dob description">{handleDate(item.birthday)}</div>}
+        {!item.occupation.toLowerCase().includes("unknown") && <div className="profile_occupation description"><h2>I am known as </h2><ul>{item.occupation.map((occ, i) => (
           <li style={{ marginBottom: "10px" }} key={i}>{occ}</li>
         ))}
         </ul></div>}
